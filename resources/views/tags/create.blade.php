@@ -9,10 +9,6 @@
         <label for="tag">Tag Name:</label>
         <input type="text" class="form-control" name="name" required>
     </div>
-    <div class="form-group">
-      <label for="image">Image:</label>
-      <input type="file" class="form-control-file" name="image">
-  </div>
     <button type="submit" class="btn btn-primary">Create Tag</button>
 </form>
 @endsection
