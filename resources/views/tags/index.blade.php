@@ -9,9 +9,6 @@
             @forelse ($tags as $tag)
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        @if ($tag->image)
-                            <img src="{{ asset('images/' . $tag->image) }}" alt="tag Image" class="card-img-top">
-                        @endif
                         <div class="card-body">
                             <h5 class="card-title">{{ $tag->name }}</h5>
                             <p class="card-text">{{ $tag->description }}</p>
