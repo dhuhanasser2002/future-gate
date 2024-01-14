@@ -36,18 +36,10 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
 
         ]);
         $tag = new Tag();
         $tag->name = $request->input('name');
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $image_name = time() .'.'. $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
-            $tag->image = $image_name;
-
-        }
         $tag->save();
         return redirect()->route('tags.index')->with('success', 'Tag created successfully');
     }

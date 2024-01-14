@@ -128,4 +128,26 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully');
     }
+
+    public function trash(){
+        $asrchivedPosts = Post::onlyTrashed()->get();
+        return view('posts.archives',compact('asrchivedPosts'));
+    }
+    public function restore($id){
+        $post = Post::withTrashed()->find($id);
+        if($post){
+            $post->restore();
+            return redirect()->route('posts.index')->with('success','Post unarchive successfully');
+        }
+        return redirect()->route('posts.index')->with('error','Post not found');  
+      }
+
+    public function forceDelete($id){
+        $post = Post::withTrashed()->find($id);
+        if($post){
+            $post->forceDelete();
+            return redirect()->route('posts.index')->with('success','Post archive successfully');
+        }
+        return redirect()->route('posts.index')->with('error','Post not found');  
+      }
 }

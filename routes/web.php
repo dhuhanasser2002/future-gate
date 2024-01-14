@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['can:delete,post'])->delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
+    Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::patch('posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
+    Route::get('post/trush', [PostController::class, 'trash'])->name('posts.trash');
 
     //logout
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
@@ -64,6 +68,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['can:delete,tag'])->delete('tags/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
 
+
+     //users
+     Route::get('user', [UserController::class, 'index'])->name('users.index');
+     Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+     Route::get('user/create', [UserController::class, 'create'])->name('users.create');
+     Route::get('user/trush', [UserController::class, 'trash'])->name('users.trash');
+     Route::delete('users/{id}/force-delete', [UserController::class, 'forceDelete'])->name('users.forceDelete');
+     Route::patch('users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
+     Route::post('users', [UserController::class, 'store'])->name('users.store');
+     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+     Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
 

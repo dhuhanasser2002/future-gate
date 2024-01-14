@@ -88,16 +88,16 @@ class CategoryController extends Controller
         ]);
 
         $category->name = $request->input('name');
-        $post->content = $request->input('description');
+        $category->content = $request->input('description');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $imageName);
-            $post->image = $imageName;
+            $category->image = $imageName;
         }
 
-        $post->save();
+        $category->save();
 
         return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
