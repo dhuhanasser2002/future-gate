@@ -69,14 +69,14 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post, User $user , Category $category , Tag $tag)
-    {   $comments = Comment::where('post_id',$post->id)->get();
+    public function show(Post $post, User $user)
+    {   $post ->comments();
         $category = Post::where('category_id',$category->id)->get();
-        $tags[] = $post->tags;
         $user = auth()->user();
+        $tags[] = $post->tags;
         $users = Post::where('user_id',$user->id)->get();
         $this->authorize('view', $post);
-        return view('posts.show', compact('post','user','comments','users','category', 'tags'));
+        return view('posts.show', compact('post'));
     }
 
     /**
