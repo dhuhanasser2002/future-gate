@@ -15,11 +15,19 @@
       @endif
         <div class="card-body">
             <h2 class="card-title text-center mb-4">Add User</h2>
+<<<<<<< HEAD
             <form method="POST" action="{{ route('users.create') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" name="name" value="{{ old('name') }}" class="form-control" required autofocus>
+=======
+            <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <label for="name">userName:</label>
+                    <input type="text" name="username" value="{{ old('username') }}" class="form-control" required autofocus>
+>>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>

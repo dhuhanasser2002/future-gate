@@ -5,7 +5,11 @@
 @section('content')
 <div>
     @if ($post->user->image)
+<<<<<<< HEAD
     <img style="display:inline" src="{{ asset('images/' .$post->user->image) }}" class="rounded-circle border border-3" alt="user image" width="100px" height="100px">
+=======
+    <img style="display:inline" src="{{ asset('images/' . $post->user->image) }}" class="rounded-circle border border-3" alt="user image" width="100px" height="100px">
+>>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
     @endif
     <h1 style="display:inline">{{$post->user->name}}</h1>
   </div>

@@ -30,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['can:delete,post'])->delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
+    Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::patch('posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
+    Route::get('post/trush', [PostController::class, 'trash'])->name('posts.trash');
 
     //logout
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
@@ -66,7 +69,11 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['can:delete,tag'])->delete('tags/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
 
 
+<<<<<<< HEAD
     //users
+=======
+     //users
+>>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
      Route::get('user', [UserController::class, 'index'])->name('users.index');
      Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
      Route::get('user/create', [UserController::class, 'create'])->name('users.create');
@@ -77,7 +84,10 @@ Route::middleware(['auth'])->group(function () {
      Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
      Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
      Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
 });
 
 

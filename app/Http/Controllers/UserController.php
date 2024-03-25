@@ -29,7 +29,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+<<<<<<< HEAD
  
+=======
+>>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
             'username' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|confirmed',
@@ -49,7 +52,12 @@ class UserController extends Controller
 
         }
         $user->save();
+<<<<<<< HEAD
         return redirect('/user');
+=======
+        return redirect('/user'); 
+
+>>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
     }
 
     /* Display the specified resource.
@@ -84,7 +92,11 @@ class UserController extends Controller
     }
     public function trash(){
         $trashedUsers = User::onlyTrashed()->get();
+<<<<<<< HEAD
         return view('users.blocked',compact('trashedUsers'));
+=======
+        return view('users.blockedusers',compact('trashedUsers'));
+>>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
     }
     public function restore($id){
         $user = User::withTrashed()->find($id);

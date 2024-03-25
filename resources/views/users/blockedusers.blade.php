@@ -7,7 +7,11 @@
     <div class="container">
         <h1 class="my-4">Users</h1>
         <div class="row">
+<<<<<<< HEAD
             @forelse ($users as $user)
+=======
+            @forelse ($trashedUsers  as $user)
+>>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         @if ($user->image)
@@ -17,7 +21,11 @@
                             <h5 class="card-title">{{ $user->username }}</h5>
                             <p class="card-text">{{ $user->email }}</p>
                             <div class="mt-2">
+<<<<<<< HEAD
                                 form action="{{ route('users.restore', $user->id) }}" method="POST"
+=======
+                                <form action="{{ route('users.restore', $user->id) }}" method="POST"
+>>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
                                 style="display:inline">
                                 @csrf
                                 @method('PATCH')
