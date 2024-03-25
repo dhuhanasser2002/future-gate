@@ -74,7 +74,7 @@ class CommentController extends Controller
         
         $comment->save();
 
-        return redirect()->route('posts.show',$comment->postId)->with('success', 'Comment updated successfully');
+        return redirect()->route('posts.show',$comment->post_id)->with('success', 'Comment updated successfully');
     }
 
     /**

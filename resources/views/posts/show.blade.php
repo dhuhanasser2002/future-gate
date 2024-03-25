@@ -5,7 +5,7 @@
 @section('content')
 <div>
     @if ($post->user->image)
-    <img style="display:inline" src="{{ asset('images/' . $user->image) }}" class="rounded-circle border border-3" alt="user image" width="100px" height="100px">
+    <img style="display:inline" src="{{ asset('images/' .$post->user->image) }}" class="rounded-circle border border-3" alt="user image" width="100px" height="100px">
     @endif
     <h1 style="display:inline">{{$post->user->name}}</h1>
   </div>
@@ -26,11 +26,11 @@
             </div>
         </div>
     </div>
-    @foreach ($comments as $comment)
+    @foreach ( $post->comments as $comment)
     <div class="card">
         <div class="card-header">
           @if ($comment->user->image)
-            <img style="display:inline" src="{{ asset('images/' . $user->image) }}" class="rounded-circle border border-3" alt="user image" width="75px" height="75px">
+            <img style="display:inline" src="{{ asset('images/' . $comment->user->image) }}" class="rounded-circle border border-3" alt="user image" width="75px" height="75px">
           @endif
           <h3 style="display:inline">{{$comment->user->name}}</h3>
         </div>

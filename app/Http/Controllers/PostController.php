@@ -71,7 +71,7 @@ class PostController extends Controller
      */
     public function show(Post $post, User $user)
     {   $post ->comments();
-        $category = Post::where('category_id',$category->id)->get();
+        //$category = Post::where('category_id',$category->id)->get();
         $user = auth()->user();
         $tags[] = $post->tags;
         $users = Post::where('user_id',$user->id)->get();

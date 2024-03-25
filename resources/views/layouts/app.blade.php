@@ -26,6 +26,9 @@
                         <a class="nav-link" href="{{ route('posts.create') }}">Create Post</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('categories.index') }}">Category</a>
                     </li>
                         <a class="nav-link" href="{{ route('categories.create') }}">Create Category</a>

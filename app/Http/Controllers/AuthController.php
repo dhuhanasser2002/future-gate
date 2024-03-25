@@ -45,7 +45,7 @@ class AuthController extends Controller
         ]);
         
         $user = new User();
-        $user->name = $request->input('name');
+        $user->username = $request->input('name');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
         if($request->hasFile('image')){

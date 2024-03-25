@@ -88,7 +88,7 @@ class CategoryController extends Controller
         ]);
 
         $category->name = $request->input('name');
-        $$category->description = $request->input('description');
+        $category->description = $request->input('description');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
