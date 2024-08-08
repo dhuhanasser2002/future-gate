@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeEmail;
 use App\Models\User;
+use App\Models\Post;
+use App\Models\StudentRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -11,17 +15,17 @@ class UserController extends Controller
      */
     public function index()
     {
-
         $users = User::all();
-
-        return view('users.index', compact('users'));
+        $studentrequest = StudentRequest::where('approved', False);
+        return view('users.index', compact('users','studentrequest'));
     }
 
     /* Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('users.create');
+        $studentrequest = StudentRequest::where('approved', False);
+        return view('users.create',compact('studentrequest'));
     }
 
     /* Store a newly created resource in storage.
@@ -29,10 +33,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-<<<<<<< HEAD
- 
-=======
->>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
             'username' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|confirmed',
@@ -52,19 +52,16 @@ class UserController extends Controller
 
         }
         $user->save();
-<<<<<<< HEAD
-        return redirect('/user');
-=======
         return redirect('/user'); 
 
->>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
     }
 
     /* Display the specified resource.
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $studentrequest = StudentRequest::where('approved', False);
+        return view('users.show', compact('user','studentrequest'));
     }
 
     /* Show the form for editing the specified resource.
@@ -92,11 +89,8 @@ class UserController extends Controller
     }
     public function trash(){
         $trashedUsers = User::onlyTrashed()->get();
-<<<<<<< HEAD
-        return view('users.blocked',compact('trashedUsers'));
-=======
-        return view('users.blockedusers',compact('trashedUsers'));
->>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
+        $studentrequest = StudentRequest::where('approved', False);
+        return view('users.blockedusers',compact('trashedUsers','studentrequest'));
     }
     public function restore($id){
         $user = User::withTrashed()->find($id);
@@ -115,4 +109,5 @@ class UserController extends Controller
         }
         return redirect()->route('users.index')->with('error','User not found');  
       }
+      
 }

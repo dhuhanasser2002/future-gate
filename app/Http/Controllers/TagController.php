@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StudentRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -13,10 +14,11 @@ class TagController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Tag::class);
+        $studentrequest = StudentRequest::where('approved', False);
 
         $tags = Tag::all();
 
-        return view('tags.index', compact('tags'));
+        return view('tags.index', compact('tags','studentrequest'));
     }
 
     /**
@@ -25,8 +27,8 @@ class TagController extends Controller
     public function create()
     {
         $this->authorize('create', Tag::class);
-
-        return view('tags.create');
+        $studentrequest = StudentRequest::where('approved', False);
+        return view('tags.create',compact('studentrequest'));
     }
 
     /**
@@ -36,18 +38,12 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required',
-<<<<<<< HEAD
-=======
             
->>>>>>> 838c40ebcf970f73ca00cc8fca2b1a40d80606c1
 
         ]);
         $tag = new Tag();
         $tag->name = $request->input('name');
-<<<<<<< HEAD
-=======
         
->>>>>>> 838c40ebcf970f73ca00cc8fca2b1a40d80606c1
         $tag->save();
         return redirect()->route('tags.index')->with('success', 'Tag created successfully');
     }
@@ -58,7 +54,8 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         $this->authorize('view', $tag);
-        return view('tags.show', compact('tag'));
+        $studentrequest = StudentRequest::where('approved', False);
+        return view('tags.show', compact('tag','studentrequest'));
     }
 
     /**
@@ -67,8 +64,8 @@ class TagController extends Controller
     public function edit(Tag $tag)
     {
         $this->authorize('update', $tag);
-
-        return view('tags.edit', compact('tag'));
+        $studentrequest = StudentRequest::where('approved', False);
+        return view('tags.edit', compact('tag','studentrequest'));
     }
 
     /**

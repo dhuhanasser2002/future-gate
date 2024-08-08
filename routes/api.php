@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\ForgotPasswordController;
+use App\Http\Controllers\Api\ResetPasswordController;
 
 
 /*
@@ -40,9 +42,11 @@ use App\Http\Controllers\Api\TagController;
     return $request->user();
 }); */
 
-Route::middleware(['guest'])->group(function () {
+/*Route::middleware(['guest'])->group(function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);});
+Route::post('/password/email',[ForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::post('password/reset', [ResetPasswordController::class , 'reset'])->name('password.reset');
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -53,6 +57,9 @@ Route::middleware(['can:view,post'])->get('/posts/{post}', [PostController::clas
 Route::middleware(['can:create,App\Models\Post'])->post('/posts', [PostController::class, 'store']);
 Route::middleware(['can:update,post'])->put('/posts/{post}', [PostController::class, 'update']);
 Route::middleware(['can:delete,post'])->delete('/posts/{post}', [PostController::class, 'destroy']);
+Route::post('/posts/search',  [PostController::class, 'search']);
+   
+
 
 //Comments
 Route::middleware(['can:viewAny,App\Models\Comment'])->get('/comments', [CommentController::class, 'index']);
@@ -70,4 +77,4 @@ Route::get('/tags', [TagController::class, 'index']);
 Route::get('/tags/{tag}', [TagController::class, 'show']);
 });
 
-?>
+?>*/

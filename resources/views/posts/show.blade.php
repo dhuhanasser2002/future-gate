@@ -3,23 +3,19 @@
 @section('title', $post->title)
 
 @section('content')
-<div>
+<div class="card-header">
     @if ($post->user->image)
-<<<<<<< HEAD
-    <img style="display:inline" src="{{ asset('images/' .$post->user->image) }}" class="rounded-circle border border-3" alt="user image" width="100px" height="100px">
-=======
-    <img style="display:inline" src="{{ asset('images/' . $post->user->image) }}" class="rounded-circle border border-3" alt="user image" width="100px" height="100px">
->>>>>>> 5ca0266a9a15a95057f6f6749df01449320d15c9
+    <img style="display:inline" src="{{ asset('images/' . $post->user->image) }}" class="rounded-circle border border-3" alt="user image" width="60px" height="60px">
     @endif
-    <h1 style="display:inline">{{$post->user->name}}</h1>
+    <h1 style="display:inline">{{$post->user->username}}</h1>
   </div>
-    <div class="card">
+    <div class="card border border-success shadow-0 mb-3" style="max-width: 18rem;" >
         <h3>Category: {{$post->category->name}}</h3>
         <h3>tags:</h3>
         @foreach($post->tags as $tag)
           <h4>{{$tag->name}}</h4>
         @endforeach
-        <div class="card-body">
+        <div class="card-body"  class="card-body text-success">
             <h2 class="card-title">{{ $post->title }}</h2>
             <p>{{ $post->postContent }}</p>
             @if ($post->image)
@@ -29,6 +25,7 @@
                 <a href="{{ route('posts.index') }}" class="btn btn-secondary">Back to Posts</a>
             </div>
         </div>
+        
     </div>
     @foreach ( $post->comments as $comment)
     <div class="card">
@@ -36,7 +33,7 @@
           @if ($comment->user->image)
             <img style="display:inline" src="{{ asset('images/' . $comment->user->image) }}" class="rounded-circle border border-3" alt="user image" width="75px" height="75px">
           @endif
-          <h3 style="display:inline">{{$comment->user->name}}</h3>
+          <h3 style="display:inline">{{$comment->user->username}}</h3>
         </div>
         <div class="card-body">
           <blockquote class="blockquote mb-0">
@@ -70,3 +67,4 @@
         <button type="submit" class="btn btn-primary">post comment</button>
     </form>
 @endsection
+

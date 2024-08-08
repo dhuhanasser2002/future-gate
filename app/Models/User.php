@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'image',
         'is_admin',
+        'is_student'
     ];
 
     public function posts() 
@@ -32,9 +33,20 @@ class User extends Authenticatable
     return $this->hasMany(Post::class); 
     }
 
+    public function studentrequest(){
+        return $this->hasOne(StudentRequest::class);
+    }
+
     public function comments() 
     { 
     return $this->hasMany(Comment::class); 
+    }
+
+    public function projects(){
+        return $this->hasMany(Project::class);
+    }
+    public function reactions(){
+        return $this->hasMany(Reaction::class);
     }
 
     /**

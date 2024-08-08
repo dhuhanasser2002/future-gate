@@ -3,7 +3,7 @@
 @section('title', 'Edit Post')
 
 @section('content')
-    <div class="card">
+    <div class="card" style="width: 60vw">
         <div class="card-body">
             <h2 class="card-title">Edit Post</h2>
             <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
@@ -26,7 +26,7 @@
                 </div>
                   <div class="form-group">
                 <select class="form-select" aria-label="Default select example" name="category_id">
-                    <option selected>categories</option>
+                    <option selected value={{$post->category_id}}>{{$post->category->name}}</option>
                     @foreach($categories as $category)
                     <option value={{$category->id}}>{{$category->name}}</option>
                     @endforeach
@@ -36,7 +36,7 @@
                     <label for="image">Image:</label>
                     <input type="file" class="form-control-file" name="image">
                     @if ($post->image)
-                        <img src="{{ asset('images/' . $post->image) }}" alt="Current Post Image" class="img-fluid mt-2">
+                        <img src="{{ asset('images/' . $post->image) }}" alt="Current Post Image" class="img-fluid mt-2" width="250px">
                     @endif
                 </div>
                 <button type="submit" class="btn btn-primary">Update Post</button>

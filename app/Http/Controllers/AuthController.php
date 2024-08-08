@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\WelcomeEmail;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -18,13 +22,13 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+        $user = User::where('email', $request->email )->first();
         if (Auth::attempt($credentials)) {
+        
             $request->session()->regenerate();
-
             return redirect()->intended('/'); // Redirect to home or intended page
-        }
-
+        
+    }
         return back()->withErrors(['email' => 'Invalid credentials']);
     }
 
@@ -35,7 +39,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-      
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
@@ -56,7 +59,7 @@ class AuthController extends Controller
 
         }
         $user->save();
-      
+        Mail::to($user->email)->send(new WelcomeEmail());
        /*  $user = User::create($validatedData); */
         Auth::login($user);
 

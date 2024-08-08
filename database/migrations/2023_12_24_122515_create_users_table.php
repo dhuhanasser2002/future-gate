@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string( 'password');
             $table->text('image');
             $table->boolean('is_admin')->default = false;
+            $table->boolean('is_student')->default = false;
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

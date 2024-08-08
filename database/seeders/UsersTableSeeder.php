@@ -16,9 +16,9 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'username'=> 'Dhuha Nasser',
-            'email'=> 'dhuha2002@test.com',
+            'email'=> 'dhuhanasser2000.2002@gmail.com',
             'password'=>Hash::make('password'),
-            'image' => '1703619670.jpg',
+            'image' => 'admin.jpg',
             'is_admin' => true,
             
         ]);
