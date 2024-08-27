@@ -3,8 +3,9 @@
 @section('title', 'Tags')
 
 @section('content')
+<a href="{{ route('tags.create') }}" class="btn btn-primary btn-sm mb-5">Add Tag</a>
     <div class="container">
-        <h1  style="color:palevioletred" class="my-4">Tags</h1>
+        <h1  class="my-4">Tags</h1>
         <div class="row">
             @forelse ($tags as $tag)
                 <div class="col-md-4 mb-4">
@@ -33,7 +34,7 @@
                     </div>
                 </div>
             @empty
-                <h2 style="color:palevioletred"> there is no tags to show</h2><br>
+                <h2> there is no tags to show</h2><br>
             @endforelse
         </div>
 @endsection

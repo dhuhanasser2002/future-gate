@@ -18,7 +18,7 @@ class Post extends Model
         'user_id',
         'category_id',
     ];
-
+public $timestamp = true;
 public function user() 
 { 
 return $this->belongsTo(User::class); 
@@ -37,5 +37,8 @@ return $this->belongsTo(Category::class);
 public function tags() 
 { 
 return $this->belongsToMany(Tag::class); 
+}
+public function reactions(){
+    return $this->hasMany(Reaction::class);
 }
 }

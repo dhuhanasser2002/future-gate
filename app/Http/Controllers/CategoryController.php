@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\StudentRequest;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,10 +15,11 @@ class CategoryController extends Controller
     {
         
         $this->authorize('viewAny', Category::class);
+        $studentrequest = StudentRequest::where('approved', False);
 
         $categories = Category::all();
 
-        return view('categories.index', compact('categories'));
+        return view('categories.index', compact('categories','studentrequest'));
     }
 
     /**
@@ -26,8 +28,8 @@ class CategoryController extends Controller
     public function create()
     {
         $this->authorize('create', Category::class);
-
-        return view('categories.create');
+        $studentrequest = StudentRequest::where('approved', False);
+        return view('categories.create',compact('studentrequest'));
     }
 
     /**
@@ -63,7 +65,8 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $this->authorize('view', $category);
-        return view('categories.show', compact('category'));
+        $studentrequest = StudentRequest::where('approved', False);
+        return view('categories.show', compact('category','studentrequest'));
     }
 
     /**
@@ -72,8 +75,9 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $this->authorize('update', $category);
+        $studentrequest = StudentRequest::where('approved', False);
 
-        return view('categories.edit', compact('category'));
+        return view('categories.edit', compact('category','studentrequest'));
     }
 
     /**
@@ -88,11 +92,7 @@ class CategoryController extends Controller
         ]);
 
         $category->name = $request->input('name');
-<<<<<<< HEAD
-        $category->content = $request->input('description');
-=======
-        $$category->description = $request->input('description');
->>>>>>> 838c40ebcf970f73ca00cc8fca2b1a40d80606c1
+        $category->description = $request->input('description');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

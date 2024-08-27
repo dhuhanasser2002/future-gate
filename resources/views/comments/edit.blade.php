@@ -14,7 +14,7 @@
                     <textarea class="form-control" name="content" required>{{ $comment->content }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Comment</button>
-                <a href="{{ route('posts.show',$comment->postId) }}" class="btn btn-secondary">Cancel</a>
+                <a href="{{ route('posts.show',$comment->post_id ) }}" class="btn btn-secondary">Cancel</a>
             </form>
         </div>
     </div>
