@@ -87,6 +87,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['can:create,App\Models\Project'])->get('projects/create', [ProjectController::class, 'create'])->name('projects.create');
     Route::middleware(['can:create,App\Models\Project'])->post('projects', [ProjectController::class, 'store'])->name('projects.store');
     Route::middleware(['can:delete,project'])->delete('projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+    Route::middleware(['can:update,project'])->get('projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+    Route::middleware(['can:update,project'])->put('projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
      //users
     Route::get('user', [UserController::class, 'index'])->name('users.index');
     Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');

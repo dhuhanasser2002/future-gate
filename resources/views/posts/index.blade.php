@@ -42,7 +42,7 @@
                 <div class="postcard__preview-txt">{{ $post->postContent }}</div>
                <div>
                   @foreach($post->tags as $tag)
-                   <span  style="color: blue ; display:inline">#{{$tag->name}}</span>
+                   <span  style="color:blue  ; display:inline">#{{$tag->name}}</span>
                   @endforeach
                </div>
                 <ul class="postcard__tagbox">

@@ -81,13 +81,15 @@
                                 <p>Archived Posts</p>
                             </a>
                         </li>
-                      @if(auth()->check() && !auth()->user()->is_student && !auth()->user()->is_admin)
-                        <li class="nav-item active pr-5">
-                            <a class="nav-link" href="{{route('requests.create')}}"><i class="fa-solid fa-graduation-cap"></i><span class="sr-only">(current)</span>
+                        @if(auth()->check() && !auth()->user()->is_student && !auth()->user()->is_admin)
+                           <li class="nav-item active pr-5">
+                            <a class="nav-link" href="{{ route('requests.create') }}">
+                                <i class="fa-solid fa-paper-plane"></i> <!-- أيقونة إرسال طلب -->
+                                <span class="sr-only">(current)</span>
                                 <p>Add Request</p>
                             </a>
-                        </li>
-                      @endif
+                          </li>
+                       @endif
                         @if(auth()->check() && auth()->user()->is_admin)
                         <li class="nav-item active pr-5">
                             <a class="nav-link" href="{{route('requests.index')}}"><div class="note"><i class="fa-solid fa-bell"></i>

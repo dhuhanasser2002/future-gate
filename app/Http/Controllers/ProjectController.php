@@ -88,7 +88,7 @@ class ProjectController extends Controller
     {
         $this->authorize('update', $project);
         $studentrequest = StudentRequest::where('approved', False);
-        return view('edit.project', compact('project','studentrequest'));
+        return view('projects.edit', compact('project','studentrequest'));
     }
 
     /**
@@ -104,7 +104,7 @@ class ProjectController extends Controller
             'mainimage'=>'image|mimes:jpeg,png,jpg,gif',
         ]);
         $project->title = $request->input('title');
-        $project->technique = $request->input('teqhnique');
+        $project->technique = $request->input('technique');
         $project->description = $request->input('description');
         $project->github = $request->input('github');
         $project->user_id = auth()->user()->id;
@@ -115,7 +115,7 @@ class ProjectController extends Controller
             $project->mainimage = $mainimagename;
         }
         $project->save();
-        return redirect()->route('projects.index')-with('project created successfuly');
+        return redirect()->route('projects.index')->with('project updated successfuly');
     }
 
     /**

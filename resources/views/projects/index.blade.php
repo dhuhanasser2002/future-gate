@@ -60,8 +60,8 @@
 <a href="{{ route('projects.create') }}" class="btn btn-primary btn-sm mb-5">Add Project</a>
 <div class="container-fluid">
 
-
-    <h1 style="color:palevioletred" class="my-4 mb-5"></h1>
+ <h1  class="my-4 mb-5"></h1>
+   
 
     <div class="row">
         @forelse ($projects as $project)
@@ -88,6 +88,11 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn-danger" onclick="return confirm('Are you sure you want to delete this project?')">Delete</button>
                             </form>
+                        @endif
+                        @if (auth()->check() && auth()->user()->can('update', $project))
+                       
+                        <a  class="btn_primary_project" href="{{ route('projects.edit', $project->id) }}">update</i></a>
+                       
                         @endif
                         <img src="{{asset('images/'.$project->mainimage)}}" class="img-fluid pt-5 project-image" alt="...">
                     </div>

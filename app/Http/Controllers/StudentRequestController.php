@@ -17,7 +17,7 @@ class StudentRequestController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Tag::class);
+        $this->authorize('viewAny', StudentRequest::class);
         $studentrequest = StudentRequest::where('approved', False);
         $requests = StudentRequest::where('approved',FALSE)->get();
         return view('student_request.index', compact('requests','studentrequest'));
